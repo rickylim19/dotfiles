@@ -1,0 +1,168 @@
+set t_Co=256
+" Enable file type detection.
+" Check the content of file type local preferences in
+" ~/.vim/ftplugin
+" so $HOME/.vim/filetypes.vim
+:Helptags
+"don't need to keep compatibility with Vi
+set nocompatible                         
+syntax enable
+filetype indent plugin on
+let vimrplugin_assign = 0
+
+" Latex
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex' 
+
+if has("mouse")
+  set mouse=a
+endif
+
+
+"vim template
+let g:templates_no_autocmd = 1
+
+"Vim-R-plugin
+let vimrplugin_objbr_place = "console,right"
+if $DISPLAY != ""
+    let vimrplugin_openpdf = 1
+    let vimrplugin_openhtml = 1
+endif
+if has("gui_running")
+    inoremap <C-Space> <C-x><C-o>
+else
+    inoremap <Nul> <C-x><C-o>
+endif
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
+
+"move cursor not based on line
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+imap jj <Esc>
+
+"activate nerd tree
+let NERDTreeDirArrows=0
+
+" for recovery file
+set backup
+set backupdir=~/.vim/backups
+let maplocalleader = ","
+
+"enable detection, plugins and indenting in one step
+filetype indent on   
+filetype plugin on   
+
+"Turn on syntax highlighting
+syntax on                                
+
+"make vim use colors that look good on a dark background
+"set background=dark
+"
+
+"show incomplete cmds down the bottom
+set showcmd                              
+
+"insert a new line after the current line by pressing enter
+map <S-Enter> O<Esc>
+map <CR> o<Esc>
+
+"show current mode down the bottom
+set showmode                             
+
+"enable folding
+set foldenable                           
+
+"set show matching parenthesis
+set showmatch                            
+
+"allow the cursor to go in to "invalid" places
+set virtualedit=all                      
+
+"find the next match as we type the search
+set incsearch              
+
+"higlight searches by default
+set hlsearch                             
+
+"ignore case when searching
+set ignorecase                           
+
+"number of spaces to use in each autoindent step
+set shiftwidth=4                         
+"two tab spaces
+set tabstop=4                            
+"number of spaces to skip or insert when <BS>ing or <Tab>ing
+set softtabstop=4                        
+set expandtab                            "spaces instead of tabs for better cross-editor compatibility
+set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
+set cindent                              "recommended seting for automatic C-style indentation
+set autoindent                           "automatic indentation in non-C files
+set nowrap                               "no wrapping
+set copyindent                           "copy the previous indentation on autoindenting
+set backspace=indent,eol,start           "allow backspacing over everything in insert mode
+
+set noerrorbells                         "don't make noise
+set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
+
+set cursorline                           "underline the current line in the file
+
+set wildmenu                             "make tab completion act more like bash
+set wildmode=list:longest                "tab complete to longest common string, like bash
+
+set mouse=a                             "disable mouse automatically entering visual mode
+
+set wrap!                                "Word wrap on
+set bs=2
+set number                               "Show line numbers
+set hidden                               "allow hiding buffers with unsaved changes
+set cmdheight=2                          "make the command line a little taller to hide "press enter to viem more" text
+
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/backup//
+
+let mapleader = ","                      "remap leader to ',' which is much easier than '\'
+
+" Open NERDTree with [,d] 
+map <Leader>d :NERDTreeToggle<CR> :set number<CR>
+
+map <F3> :tabp<CR>                       
+map <F4> :tabn<CR>
+
+autocmd BufEnter *.pml set filetype=xml
+
+     set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+     "              | | | | |  |   |      |  |     |    |
+     "              | | | | |  |   |      |  |     |    + current
+     "              | | | | |  |   |      |  |     |       column
+     "              | | | | |  |   |      |  |     +-- current line
+     "              | | | | |  |   |      |  +-- current % into file
+     "              | | | | |  |   |      +-- current syntax in
+     "              | | | | |  |   |          square brackets
+     "              | | | | |  |   +-- current fileformat
+     "              | | | | |  +-- number of lines
+     "              | | | | +-- preview flag in square brackets
+     "              | | | +-- help flag in square brackets
+     "              | | +-- readonly flag in square brackets
+     "              | +-- rodified flag in square brackets
+     "              +-- full path to file in the buffer
+ " }
+
+"colorscheme morning
+"hi Visual term=reverse cterm=reverse guibg=Red
+
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif
+

@@ -1,0 +1,8 @@
+call pathogen#runtime_append_all_bundles()
+syntax on
+filetype plugin indent on
+call pathogen#helptags()
+call pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotfiles/.vim/bundles'))
+source ~/Dropbox/dotfiles/.vimrc_main
+highlight OverLength ctermbg=yellow ctermfg=black guibg=#592929
+match OverLength /\%81v.\+/
