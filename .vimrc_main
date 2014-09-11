@@ -1,4 +1,24 @@
 set t_Co=256
+"Enable vim-latex on rnw
+"autocmd BufRead,BufNewFile *.Rnw set filetype=tex 
+
+let vimrplugin_screenvsplit = 1
+let g:ScreenImpl = 'Tmux'
+
+"------------------------------------
+" Toggle filetypes R, Rnw and Tex 
+"------------------------------------
+let b:myFileType=-1   
+let g:myFileTypeList=["tex","rnoweb","r"]
+function! ToggleFileType()
+  let b:myFileType=b:myFileType+1
+  if b:myFileType>=len(g:myFileTypeList) | let b:myFileType=0 | endif
+  execute "set filetype=".get(g:myFileTypeList, b:myFileType)
+  echo "Filetype set to:" g:myFileTypeList[b:myFileType]
+endfunction
+nmap <silent> <F12> :call ToggleFileType()<CR>
+
+
 " Enable file type detection.
 " Check the content of file type local preferences in
 " ~/.vim/ftplugin

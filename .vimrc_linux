@@ -1,6 +1,7 @@
 call pathogen#runtime_append_all_bundles()
+filetype off
 syntax on
 filetype plugin indent on
 call pathogen#helptags()
-call pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotfiles/.vim/bundles'))
-source ~/Dropbox/dotfiles/.vimrc_main
+call pathogen#runtime_prepend_subdirectories(expand('~/dotfiles/.vim/bundles'))
+source ~/dotfiles/.vimrc_main
