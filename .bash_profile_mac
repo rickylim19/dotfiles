@@ -1,0 +1,12 @@
+# Safety aliases.
+alias cp='cp -i'
+alias mv='mv -i'
+alias ll='ls -lhG'
+
+# set PATH so it includes user's bin_dropbox if it exists
+if [ -d "$HOME/Dropbox/bin_dropbox" ] ; then
+    PATH="$HOME/Dropbox/bin_dropbox:$PATH"
+fi
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
